@@ -17,7 +17,7 @@ module.exports = {
     findAllProducts: (req, res) => {
         Product.find()
         .then((allProducts) => {
-            res.json({products: allProducts})
+            res.json({product: allProducts})
         })
         .catch((err) => {
             res.status(500).json({message: 'Something went wrong', error: err})
@@ -38,7 +38,8 @@ module.exports = {
     updateProduct: (req, res) => {
         Product.findOneAndUpdate({_id: req.params.id}, req.body, {new: true, runValidators: true})
         .then((updateProduct) => {
-            res.json({product: updateProduct})
+            res.json({product: updateProduct}),
+            console.log(updateProduct)
         })
         .catch((err) =>{
             res.status(500).json({message: 'Something went wrong', error: err})
