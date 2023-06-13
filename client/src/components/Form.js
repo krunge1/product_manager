@@ -39,8 +39,8 @@ const Form = (props) => {
         setPrice(e.target.value);
         if(e.target.value === ""){
             setPriceError("");
-        }else if(e.target.value.length < 2){
-            setPriceError("Price Must be FIXXXXXMEEEESEHEHGKEJHE ")
+        }else if(e.target.value < 0){
+            setPriceError("Price Must be greater than $0.00")
         }else{
             setPriceError("");
         }
