@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import axios from 'axios';
 
 const Form = (props) => {
+    const {currentProducts, setCurrentProducts} = props;
     const [title, setTitle] = useState("");
     const [titleError, setTitleError] = useState("");
     const [price, setPrice] = useState("");
@@ -11,16 +12,26 @@ const Form = (props) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post('http://localhost:800/api/products', {
+        const newProduct = {
+            title,
+            price,
+            description
+        }
+        console.log(currentProducts);
+        axios.post('http://localhost:8000/api/products', {
             title,
             price,
             description
         })
-            .then(res => {
-                console.log(res);
-                console.log(res.data);
+        .then(res => {
+            console.log(res);
+            console.log(res.data);
+            setCurrentProducts([...currentProducts, newProduct])
             })
             .catch(err => console.log(err));
+        setTitle("");
+        setPrice("");
+        setDescription("");
     }
 
 
@@ -90,9 +101,10 @@ const Form = (props) => {
                     <input 
                         onChange = {handleDescription}
                         value={description}
-                        type='email'>
+                        type='text'>
                     </input>                
-                </div>     
+                </div>
+                <input type="submit" value="Create"/>     
             </form>
         </div>
     )

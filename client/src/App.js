@@ -1,13 +1,18 @@
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
-import Header from './components/Header';
-import Form from './components/Form';
+import {BrowserRouter, Routes, Route} from 'react-router-dom'
+import Main from './views/Main';
 
 function App() {
+  const [currentProducts, setCurrentProducts] = useState([])
   return (
     <div className="App">
-      <Header/>
-      <Form/>
+      <BrowserRouter>
+        <Routes>
+          <Route element={<Main/>} path="/products" default/>
+        </Routes>
+      
+      </BrowserRouter>
     </div>
   );
 }
