@@ -25,6 +25,7 @@ const DisplayForm = (props) => {
                 return(
                     <div className={styles.Link}>
                     <Link key={index} to={`/products/${product._id}`}>{product.title}</Link>
+                    <Link to={"/products/edit/" + product._id}>Edit</Link>
                     </div>
                 )}):
                 <p>No products available.</p>
