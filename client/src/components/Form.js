@@ -5,18 +5,13 @@ const Form = (props) => {
     const {currentProducts, setCurrentProducts} = props;
     const [title, setTitle] = useState("");
     const [titleError, setTitleError] = useState("");
-    const [price, setPrice] = useState("");
+    const [price, setPrice] = useState(0);
     const [priceError, setPriceError] = useState("");
     const [description, setDescription] = useState("");
     const [descriptionError, setDescriptionError] = useState("");
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        const newProduct = {
-            title,
-            price,
-            description
-        }
         console.log(currentProducts);
         axios.post('http://localhost:8000/api/products', {
             title,
@@ -26,7 +21,7 @@ const Form = (props) => {
         .then(res => {
             console.log(res);
             console.log(res.data);
-            setCurrentProducts([...currentProducts, newProduct])
+            setCurrentProducts([...currentProducts, res.data])
             })
             .catch(err => console.log(err));
         setTitle("");
@@ -79,6 +74,7 @@ const Form = (props) => {
                     <input 
                         onChange = {handleTitle}
                         value={title}
+                        name="title"
                         type='text'>
                     </input>
                 </div>
@@ -90,6 +86,7 @@ const Form = (props) => {
                     <input 
                         onChange = {handlePrice}
                         value={price}
+                        name="price"
                         type='number'>
                     </input>
                 </div>
@@ -101,6 +98,7 @@ const Form = (props) => {
                     <input 
                         onChange = {handleDescription}
                         value={description}
+                        name="description"
                         type='text'>
                     </input>                
                 </div>

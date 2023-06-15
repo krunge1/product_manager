@@ -4,7 +4,7 @@ import Form from '../components/Form';
 import DisplayForm from '../components/DisplayForm';
 
 const Main = () => {
-    const [currentProducts, setCurrentProducts] = useState([])
+    const [currentProducts, setCurrentProducts] = useState([]);
     return (
         <div>
             <Header/>
