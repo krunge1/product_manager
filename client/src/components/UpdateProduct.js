@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 const UpdateProduct = (props) => {
     const {id} = useParams();
+    const navigate = useNavigate();
 
     const {currentProducts, setCurrentProducts} = props;
     const [title, setTitle] = useState()
@@ -16,7 +17,7 @@ const UpdateProduct = (props) => {
     useEffect(() => {
         axios.get('http://localhost:8000/api/products/'+id)
             .then(res => {
-                const editProduct = res[0];
+                setTitle(res.data.title)
                 setPrice(res.data.price);
                 setDescription(res.data.description)
                 console.log(res.data)
@@ -27,7 +28,7 @@ const UpdateProduct = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(currentProducts);
-        axios.patch('http://localhost:8000/api/products/'+id, {
+        axios.put('http://localhost:8000/api/products/'+id, {
             title,
             price,
             description
@@ -35,12 +36,13 @@ const UpdateProduct = (props) => {
         .then(res => {
             console.log(res);
             console.log(res.data);
-            setCurrentProducts([...currentProducts, res.data])
-            })
-            .catch(err => console.log(err));
+            setCurrentProducts([...currentProducts, res.data]);
+        })
+        .catch(err => console.log(err));
         setTitle("");
         setPrice("");
         setDescription("");
+        navigate("/products")
     }
 
 
