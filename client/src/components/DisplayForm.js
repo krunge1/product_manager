@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react'
 import axios from 'axios'
 import { useNavigate, Link } from 'react-router-dom';
-import styles from '../App.css'
+import styles from '../styles/DisplayForm.module.css'
 
 const DisplayForm = (props) => {
     const {currentProducts, setCurrentProducts, removeProduct} = props;
@@ -29,17 +29,27 @@ const DisplayForm = (props) => {
     return (
         <div>
             <h2>All Products:</h2>
+                    <table className={styles.table}>
+                        <tr className={styles.tableData}>
+                            <th className={styles.tableData}>Product</th>
+                            <th className={styles.tableData}>Actions</th>
+                        </tr>
             {currentProducts?
                 currentProducts.map((product, index) =>{
                 return(
-                    <div className={styles.Link}>
-                    <Link key={index} to={`/products/${product._id}`}>{product.title}</Link>
-                    <Link to={"/products/edit/" + product._id}>Edit</Link>
-                    <button onClick={(e) => {deleteProduct(product._id)}}>Delete</button>
-                    </div>
+                        <tr className={styles.tableData}>
+                            <td className={styles.tableData}>
+                                <Link key={index} to={`/products/${product._id}`}>{product.title}</Link>
+                            </td>
+                            <td className={styles.tableData}>
+                                <Link className={styles.link} to={"/products/edit/" + product._id}>Edit</Link>
+                                <button className={styles.link} onClick={(e) => {deleteProduct(product._id)}}>Delete</button>
+                            </td>
+                        </tr>
                 )}):
                 <p>No products available.</p>
-                }          
+            }          
+                    </table>
         </div>
     )
 };

@@ -1,0 +1,22 @@
+.table{
+    margin: auto;
+    width: 50%;
+    border: 5px solid black;
+}
+
+.tableData{
+    border: 2px solid black;
+    border-collapse: collapse;
+}
+
+.link{
+    background-color: white;
+    color: black;
+    border: 2px solid green;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    gap: 5px;
+    
+  }

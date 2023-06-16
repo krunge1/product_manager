@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import axios from 'axios';
+import styles from '../styles/Form.module.css'
 
 const Form = (props) => {
     const {currentProducts, setCurrentProducts} = props;
@@ -68,7 +69,7 @@ const Form = (props) => {
             <form onSubmit={handleSubmit}>
                 <div>
                     {titleError?
-                    <p>{titleError}</p>:
+                    <p className={styles.error}>{titleError}</p>:
                     ""}
                     <label>Title:</label>
                     <input 
@@ -80,7 +81,7 @@ const Form = (props) => {
                 </div>
                 <div>
                     {priceError?
-                    <p>{priceError}</p>:
+                    <p className={styles.error}>{priceError}</p>:
                     ""}
                     <label>Price:</label>
                     <input 
@@ -92,7 +93,7 @@ const Form = (props) => {
                 </div>
                 <div>
                     {descriptionError?
-                    <p>{descriptionError}</p>:
+                    <p className={styles.error}>{descriptionError}</p>:
                     ""}
                     <label>Description:</label>
                     <input 
