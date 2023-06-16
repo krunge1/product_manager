@@ -66,12 +66,12 @@ const Form = (props) => {
 
     return (
         <div>
-            <form onSubmit={handleSubmit}>
+            <form className={styles.form} onSubmit={handleSubmit}>
                 <div>
                     {titleError?
                     <p className={styles.error}>{titleError}</p>:
                     ""}
-                    <label>Title:</label>
+                    <label className={styles.label}>Title:</label>
                     <input 
                         onChange = {handleTitle}
                         value={title}
@@ -83,7 +83,7 @@ const Form = (props) => {
                     {priceError?
                     <p className={styles.error}>{priceError}</p>:
                     ""}
-                    <label>Price:</label>
+                    <label className={styles.label}>Price:</label>
                     <input 
                         onChange = {handlePrice}
                         value={price}
@@ -95,7 +95,7 @@ const Form = (props) => {
                     {descriptionError?
                     <p className={styles.error}>{descriptionError}</p>:
                     ""}
-                    <label>Description:</label>
+                    <label className={styles.label}>Description:</label>
                     <input 
                         onChange = {handleDescription}
                         value={description}
@@ -103,7 +103,7 @@ const Form = (props) => {
                         type='text'>
                     </input>                
                 </div>
-                <input type="submit" value="Create"/>     
+                <input className={styles.submitButton} type="submit" value="Create"/>     
             </form>
         </div>
     )
